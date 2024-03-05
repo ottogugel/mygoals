@@ -1,0 +1,5 @@
+como iniciar o projeto
+- dar um npm i por causa do package.json
+
+
+- para executar o projeto no expo dar um npm start
