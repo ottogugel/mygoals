@@ -77,7 +77,7 @@ export default function Details() {
       let amountAsNumber = Number(amount.replace(",", "."))
 
       if (isNaN(amountAsNumber)) {
-        return Alert.alert("Erro", "Valor inválido.")
+        return Alert.alert("Error", "Invalid value.");
       }
 
       if (type === "down") {
@@ -86,7 +86,7 @@ export default function Details() {
 
       console.log({ goalId, amount: amountAsNumber })
 
-      Alert.alert("Sucesso", "Transação registrada!")
+      Alert.alert("Success", "Registered transaction!");
 
       handleBottomSheetClose()
       Keyboard.dismiss()
@@ -116,25 +116,25 @@ export default function Details() {
 
       <Transactions transactions={goal.transactions} />
 
-      <Button title="Nova transação" onPress={handleBottomSheetOpen} />
+      <Button title="New transaction" onPress={handleBottomSheetOpen} />
 
       <BottomSheet
         ref={bottomSheetRef}
-        title="Nova transação"
+        title="New transaction"
         snapPoints={[0.01, 284]}
         onClose={handleBottomSheetClose}
       >
         <TransactionTypeSelect onChange={setType} selected={type} />
 
         <Input
-          placeholder="Valor"
+          placeholder="Value"
           keyboardType="numeric"
           onChangeText={setAmount}
           value={amount}
         />
 
-        <Button title="Confirmar" onPress={handleNewTransaction} />
+        <Button title="Confirm" onPress={handleNewTransaction} />
       </BottomSheet>
     </View>
-  )
+  );
 }

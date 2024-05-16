@@ -16,7 +16,7 @@ export function TransactionTypeSelect({ selected, onChange }: Props) {
       <TransactionType
         type={{
           icon: "add",
-          title: "Depósito",
+          title: "Deposit",
           color: colors.green[500],
           selected: selected === "up",
         }}
@@ -26,12 +26,12 @@ export function TransactionTypeSelect({ selected, onChange }: Props) {
       <TransactionType
         type={{
           icon: "remove",
-          title: "Saque",
+          title: "Withdrawal",
           color: colors.red[500],
           selected: selected === "down",
         }}
         onPress={() => onChange("down")}
       />
     </View>
-  )
+  );
 }
