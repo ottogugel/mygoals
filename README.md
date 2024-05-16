@@ -3,11 +3,11 @@
 </h1>
 
 ### Tecnologias
-- [Nativewind]()
-- [TailwindCSS]()
-- [React Native]()
-- [Expo]()
--
+- [Nativewind](https://www.nativewind.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React Native](https://reactnative.dev/)
+- [Expo](https://docs.expo.dev/)
+- [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/)
 
 ### Links
 

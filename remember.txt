@@ -1,5 +1,17 @@
-como iniciar o projeto
+* como iniciar o projeto
 - dar um npm i por causa do package.json
 
 
 - para executar o projeto no expo dar um npm start
+
+* configurando database
+
+instalar o expo sqlite
+npx expo install expo-sqlite
+
+criando uma pasta database
+criar um arquivo databaseinit.ts
+
+dentro do arquivo exportar o SQLiteDatabase from 'expo-sqlite/next'
+
+e criar uma async function
