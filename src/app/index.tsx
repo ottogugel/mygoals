@@ -64,8 +64,8 @@ export default function Home() {
 
   async function fetchGoals() {
     try {
-      const response = mocks.goals;
-      setGoals(response);
+      const response = UseGoal.all()
+      setGoals(response)
     } catch (error) {
       console.log(error);
     }

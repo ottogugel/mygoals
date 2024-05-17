@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, TextInput, TextInputProps, View } from "react-native"
+import { TextInput, TextInputProps } from "react-native"
 
 import { colors } from "@/styles/colors"
 

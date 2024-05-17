@@ -1,5 +1,5 @@
 import React, { ReactNode, forwardRef } from "react"
-import { KeyboardAvoidingView, Text, View } from "react-native"
+import { Text, View } from "react-native"
 import Bottom from "@gorhom/bottom-sheet"
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
