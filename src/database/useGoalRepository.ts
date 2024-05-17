@@ -1,4 +1,4 @@
-import { useSQLiteContext } from "expo-sqlite";
+import { useSQLiteContext } from 'expo-sqlite/next';
 
 export type GoalCreateDatabase = {
   name: string
@@ -14,23 +14,51 @@ export type GoalResponseDatabase = {
 
 export function useGoalRepository() {
   const database = useSQLiteContext()
-
-  // MÉTODO PARA CRIAR A META
+  // MÉTODO DE CRIAR
   function create(goal: GoalCreateDatabase) {
+    try {
     const statement = database.prepareSync(
       "INSERT INTO goals (name, total) VALUES ($name, $total)"
     )
+
     statement.executeSync({
       $name: goal.name,
       $total: goal.total,
     })
+    } catch (error) {
+      throw error
     }
   }
-  // MÉTODO PARA LISTAR AS METAS
-  function all() {}
+  // MÉTODO DE LOCALIZAR
+  function all() {
+    try {
+      return database.getAllAsync<GoalResponseDatabase>(`
+        SELECT g.id, g.name, g.total, COALESCE(SUM(t.amount), 0) AS current
+        FROM goals AS g
+        LEFT JOIN transactions t ON t.goal_id = g.id
+        GROUP BY g.id, g.name, g.total;
+      `)
+    } catch (error) {
+      throw error
+    }
+  }
 
   return {
     create,
     all
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

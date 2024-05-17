@@ -6,14 +6,14 @@ type Props = TouchableOpacityProps & {
 
 export function Button({ title, ...rest }: Props) {
   return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      className="h-12 w-full bg-blue-500 items-center justify-center rounded-sm"
-      {...rest}
-    >
-      <Text className="text-white text-sm font-semiBold uppercase">
-        {title}
-      </Text>
-    </TouchableOpacity>
-  )
+      <TouchableOpacity
+        activeOpacity={0.7}
+        className="h-12 w-full bg-blue-500 items-center justify-center rounded-sm"
+        {...rest}
+      >
+        <Text className="text-white text-sm font-semiBold uppercase">
+          {title}
+        </Text>
+      </TouchableOpacity>
+  );
 }
