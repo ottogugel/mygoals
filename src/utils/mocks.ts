@@ -4,15 +4,15 @@ import { currencyFormat } from "./currencyFormat"
 const transactions = [
   {
     id: "1",
-    created_at: dayjs(new Date()).format("DD/MM/YYYY [às] HH:mm"),
+    created_at: dayjs(new Date()).format("ddd, MMMM D, YYYY h:mm A"),
     amount: 100,
   },
   {
     id: "2",
-    created_at: dayjs(new Date()).format("DD/MM/YYYY [às] HH:mm"),
+    created_at: dayjs(new Date()).format("ddd, MMMM D, YYYY h:mm A"),
     amount: -90,
   },
-]
+];
 
 const goal = {
   id: "1",

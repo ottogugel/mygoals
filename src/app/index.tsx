@@ -15,6 +15,7 @@ import { Transactions, TransactionsProps } from "@/components/Transactions";
 
 //DATABASE
 import { useGoalRepository } from "@/database/useGoalRepository";
+import { useTransactionRepository } from "@/database/useTransactionRepository";
 
 // UTILS
 import { mocks } from "@/utils/mocks";
@@ -30,6 +31,7 @@ export default function Home() {
 
   //DATABASE
   const UseGoal = useGoalRepository();
+  const useTransaction = useTransactionRepository();
 
   // BOTTOM SHEET
   const bottomSheetRef = useRef<Bottom>(null);
@@ -56,6 +58,7 @@ export default function Home() {
 
       setName("");
       setTotal("");
+      fetchGoals();
     } catch (error) {
       Alert.alert("Error", "Unable to register.");
       console.log(error);
@@ -73,12 +76,12 @@ export default function Home() {
 
   async function fetchTransactions() {
     try {
-      const response = mocks.transactions;
+      const response = useTransaction.findLatest()
 
       setTransactions(
         response.map((item) => ({
           ...item,
-          date: dayjs(item.created_at).format("DD/MM/YYYY [às] HH:mm"),
+          date: dayjs(item.created_at).format("ddd, MMMM D, YYYY h:mm A"),
         }))
       );
     } catch (error) {

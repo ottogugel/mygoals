@@ -7,6 +7,7 @@ import dayjs from "dayjs"
 
 // DATABASE
 import { useGoalRepository } from "@/database/useGoalRepository"
+import { useTransactionRepository } from "@/database/useTransactionRepository";
 
 // COMPONENTS
 import { Input } from "@/components/Input"
@@ -45,6 +46,7 @@ export default function Details() {
   // DATABASE
 
   const useGoal = useGoalRepository();
+  const useTransaction = useTransactionRepository();
 
 
   // BOTTOM SHEET
@@ -56,7 +58,7 @@ export default function Details() {
     try {
       if (goalId) {
         const goal = useGoal.show(goalId)
-        const transactions = mocks.transactions
+        const transactions = useTransaction.findByGoal(goalId)
 
         if (!goal || !transactions) {
           return router.back()
@@ -69,9 +71,9 @@ export default function Details() {
           percentage: (goal.current / goal.total) * 100,
           transactions: transactions.map((item) => ({
             ...item,
-            date: dayjs(item.created_at).format("DD/MM/YYYY [às] HH:mm"),
+            date: dayjs(item.created_at).format("ddd, MMMM D, YYYY h:mm A"),
           })),
-        })
+        });
 
         setIsLoading(false)
       }
@@ -92,7 +94,7 @@ export default function Details() {
         amountAsNumber = amountAsNumber * -1
       }
 
-      console.log({ goalId, amount: amountAsNumber })
+      useTransaction.create({ goalId, amount: amountAsNumber });
 
       Alert.alert("Success", "Registered transaction!");
 
@@ -101,6 +103,7 @@ export default function Details() {
 
       setAmount("")
       setType("up")
+      fetchDetails()
     } catch (error) {
       console.log(error)
     }
