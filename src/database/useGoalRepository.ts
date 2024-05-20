@@ -1,4 +1,6 @@
 import { useSQLiteContext } from 'expo-sqlite/next';
+// NAVIGATE
+import { useNavigation } from "expo-router";
 
 export type GoalCreateDatabase = {
   name: string
@@ -13,7 +15,10 @@ export type GoalResponseDatabase = {
 }
 
 export function useGoalRepository() {
+
+  const navigation = useNavigation();
   const database = useSQLiteContext()
+
   // MÉTODO DE CRIAR
   function create(goal: GoalCreateDatabase) {
     try {
@@ -58,23 +63,24 @@ export function useGoalRepository() {
     return result.getFirstSync()
   }
 
+  // MÉTODO DE EXCLUIR A META
+  function remove() {
+    try {
+    database.runSync(
+      "DELETE FROM goals WHERE id = $id",
+      { $id: 2 }
+    );
+    navigation.goBack();
+    } catch (error) {
+      throw error
+    }
+  }
+
   return {
     create,
     all,
-    show
+    show,
+    remove
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

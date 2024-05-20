@@ -2,6 +2,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native"
 
 import { Progress } from "@/components/Progress"
 import { currencyFormat } from "@/utils/currencyFormat"
+import React from "react";
 
 export type GoalProps = {
   name: string
@@ -34,5 +35,5 @@ export function Goal({ goal, ...rest }: Props) {
 
       <Progress percentage={percentage} />
     </TouchableOpacity>
-  )
+  );
 }

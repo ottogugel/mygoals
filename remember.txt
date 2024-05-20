@@ -1,17 +1,5 @@
-* como iniciar o projeto
-- dar um npm i por causa do package.json
-
-
-- para executar o projeto no expo dar um npm start
-
-* configurando database
-
-instalar o expo sqlite
-npx expo install expo-sqlite
-
-criando uma pasta database
-criar um arquivo databaseinit.ts
-
-dentro do arquivo exportar o SQLiteDatabase from 'expo-sqlite/next'
-
-e criar uma async function
+* fazer a função de remover o goal e quando for removido voltar a tela inicial
+* que a função pegue o id de forma automatica sem ter que fazer manual
+* fazer a função de quando a meta for completa ser arquivada ou ir para o final da lista com uma cor diferente
+* ver a questão do texto no ios que quando o texto é digitado no input não consegue visualizar.
+* ver a questao da data no ios que fica invalid date mas no android funciona normal.

@@ -20,9 +20,9 @@ import { BottomSheet } from "@/components/BottomSheet"
 import { Transactions } from "@/components/Transactions"
 import { TransactionProps } from "@/components/Transaction"
 import { TransactionTypeSelect } from "@/components/TransactionTypeSelect"
+import { DeleteGoal } from "@/components/DeleteGoal";
 
 // UTILS
-import { mocks } from "@/utils/mocks"
 import { currencyFormat } from "@/utils/currencyFormat"
 
 type Details = {
@@ -76,6 +76,7 @@ export default function Details() {
         });
 
         setIsLoading(false)
+        console.log(goalId)
       }
     } catch (error) {
       console.log(error)
@@ -146,6 +147,8 @@ export default function Details() {
 
         <Button title="Confirm" onPress={handleNewTransaction} />
       </BottomSheet>
+
+      <DeleteGoal />
     </View>
   );
 }

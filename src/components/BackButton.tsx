@@ -4,8 +4,8 @@ import { colors } from "@/styles/colors"
 
 export function BackButton() {
   return (
-    <Link asChild href="/">
-      <MaterialIcons name="arrow-back" size={36} color={colors.white} />
-    </Link>
-  )
+      <Link asChild href="/" className="w-10">
+        <MaterialIcons name="arrow-back" size={36} color={colors.white} />
+      </Link>
+  );
 }
