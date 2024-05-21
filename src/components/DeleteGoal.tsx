@@ -6,10 +6,12 @@ import { Alert, View } from "react-native";
 // DATABASE
 import { useGoalRepository } from "@/database/useGoalRepository";
 
+interface DeleteGoalProps {
+  id: string;
+}
 
-export function DeleteGoal() {
-
-  const useGoal = useGoalRepository()
+export function DeleteGoal({id}: DeleteGoalProps) {
+  const useGoal = useGoalRepository();
 
   function handleRemoveGoal() {
     Alert.alert("Delete", `Do you want to delete this goal?`, [
@@ -18,16 +20,14 @@ export function DeleteGoal() {
       },
       {
         text: "Remove",
-        onPress: () => useGoal.remove(),
+        onPress: () => useGoal.remove(id),
       },
     ]);
   }
 
   return (
     <View className="absolute top-14 left-96">
-      <TouchableOpacity
-        onPress={handleRemoveGoal}
-      >
+      <TouchableOpacity onPress={handleRemoveGoal}>
         <Entypo name="trash" size={24} color={colors.red[500]} />
       </TouchableOpacity>
     </View>

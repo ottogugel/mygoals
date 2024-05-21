@@ -18,7 +18,14 @@ import { useGoalRepository } from "@/database/useGoalRepository";
 import { useTransactionRepository } from "@/database/useTransactionRepository";
 
 // UTILS
-import { mocks } from "@/utils/mocks";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod";
+
+const schema = z.object({
+  name: z.string().max(128, { message: "O limite máximo de caracteres é 128."}),
+  total: z.number().positive({ message: "Apenas números positivos."}),
+})
 
 export default function Home() {
   // LISTS
@@ -28,6 +35,10 @@ export default function Home() {
   // FORM
   const [name, setName] = useState("");
   const [total, setTotal] = useState("");
+
+  const form = useForm({
+    resolver: zodResolver(schema)
+  });
 
   //DATABASE
   const UseGoal = useGoalRepository();
@@ -115,14 +126,31 @@ export default function Home() {
         snapPoints={[0.01, 284]}
         onClose={handleBottomSheetClose}
       >
-        <Input placeholder="Goal name" onChangeText={setName} value={name} />
-
-        <Input
-          placeholder="Value"
-          keyboardType="numeric"
-          onChangeText={setTotal}
-          value={total}
+        <Controller
+          name="name"
+          control={form.control}
+          render={({ field: { value, onChange } }) => (
+            <Input
+              placeholder="Goal name"
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
         />
+
+        <Controller
+          name="total"
+          control={form.control}
+          render={({ field: { value, onChange } }) => (
+            <Input
+              placeholder="Value"
+              keyboardType="numeric"
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+
         <Button title="Create" onPress={handleCreate} />
       </BottomSheet>
     </View>

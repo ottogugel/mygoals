@@ -64,11 +64,11 @@ export function useGoalRepository() {
   }
 
   // MÉTODO DE EXCLUIR A META
-  function remove() {
+  function remove(id: string) {
     try {
     database.runSync(
       "DELETE FROM goals WHERE id = $id",
-      { $id: 2 }
+      { $id : Number(id) }
     );
     navigation.goBack();
     } catch (error) {

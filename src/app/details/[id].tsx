@@ -148,7 +148,7 @@ export default function Details() {
         <Button title="Confirm" onPress={handleNewTransaction} />
       </BottomSheet>
 
-      <DeleteGoal />
+      <DeleteGoal id={goalId.toString()} />
     </View>
   );
 }
