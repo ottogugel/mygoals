@@ -12,20 +12,25 @@ import { Button } from "@/components/Button";
 import { BottomSheet } from "@/components/BottomSheet";
 import { Goals, GoalsProps } from "@/components/Goals";
 import { Transactions, TransactionsProps } from "@/components/Transactions";
+import { Loading } from "@/components/Loading";
 
 //DATABASE
 import { useGoalRepository } from "@/database/useGoalRepository";
 import { useTransactionRepository } from "@/database/useTransactionRepository";
 
 // UTILS
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod";
+// import { Controller, useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod"
+// import { z } from "zod";
 
+{
+  /*
 const schema = z.object({
-  name: z.string().max(128, { message: "O limite máximo de caracteres é 128."}),
+  name: z.string().min(1, { message: "Goal name is required" }),
   total: z.number().positive({ message: "Apenas números positivos."}),
 })
+*/
+}
 
 export default function Home() {
   // LISTS
@@ -36,9 +41,13 @@ export default function Home() {
   const [name, setName] = useState("");
   const [total, setTotal] = useState("");
 
+  {
+    /*
   const form = useForm({
     resolver: zodResolver(schema)
   });
+  */
+  }
 
   //DATABASE
   const UseGoal = useGoalRepository();
@@ -61,20 +70,26 @@ export default function Home() {
         return Alert.alert("Error", "Invalid value.");
       }
 
-      UseGoal.create({ name, total: totalAsNumber });
+      if(name === "") {
+        return Alert.alert("Error", "Goal name and Total is required.")
 
-      Keyboard.dismiss();
-      handleBottomSheetClose();
-      Alert.alert("Success", "Goal registered!");
+      } else {
+        UseGoal.create({ name, total: totalAsNumber });
 
-      setName("");
-      setTotal("");
-      fetchGoals();
+        Keyboard.dismiss();
+        handleBottomSheetClose();
+        Alert.alert("Success", "Goal registered!");
+
+        setName("");
+        setTotal("");
+        fetchGoals();
+      }
     } catch (error) {
       Alert.alert("Error", "Unable to register.");
       console.log(error);
     }
   }
+
 
   async function fetchGoals() {
     try {
@@ -126,6 +141,16 @@ export default function Home() {
         snapPoints={[0.01, 284]}
         onClose={handleBottomSheetClose}
       >
+        <Input placeholder="Goal name" onChangeText={setName} value={name} />
+
+        <Input
+          placeholder="Value"
+          keyboardType="numeric"
+          onChangeText={setTotal}
+          value={total}
+        />
+
+        {/*
         <Controller
           name="name"
           control={form.control}
@@ -143,13 +168,13 @@ export default function Home() {
           control={form.control}
           render={({ field: { value, onChange } }) => (
             <Input
-              placeholder="Value"
-              keyboardType="numeric"
+              placeholder="Goal name"
               onChangeText={onChange}
               value={value}
             />
           )}
         />
+        */}
 
         <Button title="Create" onPress={handleCreate} />
       </BottomSheet>

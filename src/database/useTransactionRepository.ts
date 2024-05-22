@@ -30,7 +30,7 @@ export function useTransactionRepository() {
     try {
       const statement = database.prepareSync(
         "SELECT * FROM transactions WHERE goal_id = $goal_id"
-      )
+      );
 
       const result = statement.executeSync<TransactionResponseDatabase>({
         $goal_id: goalId,

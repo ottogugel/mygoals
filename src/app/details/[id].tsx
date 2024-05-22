@@ -77,6 +77,7 @@ export default function Details() {
 
         setIsLoading(false)
         console.log(goalId)
+        console.log(transactions)
       }
     } catch (error) {
       console.log(error)
@@ -109,6 +110,8 @@ export default function Details() {
       console.log(error)
     }
   }
+
+
 
   useEffect(() => {
     fetchDetails()

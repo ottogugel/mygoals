@@ -1,5 +1,22 @@
-* fazer a função de remover o goal e quando for removido voltar a tela inicial
-* que a função pegue o id de forma automatica sem ter que fazer manual
 * fazer a função de quando a meta for completa ser arquivada ou ir para o final da lista com uma cor diferente
 * ver a questão do texto no ios que quando o texto é digitado no input não consegue visualizar.
 * ver a questao da data no ios que fica invalid date mas no android funciona normal.
+
+
+* verificar zod reacthookform
+* deletar meta junto a transação
+* sql injector
+📌 String query = 'Select * from NomeDaTabela where Name="' +userName+'" and password="'+password+'"';
+
+Neste cenário se o input for preenchido com
+" or 1 = 1 --
+
+A query ficaria da seguinte forma: Select * from NomeDaTabela where Name="" or 1 = 1 --" and password=""
+Onde toda a query seria ignorada a partir desse trecho de SQL que indicamos
+
+Outro exemplo, seria adicionar comandos injetados dentro da aplicação.
+
+* fazer skeleton
+https://www.youtube.com/watch?v=8yiJNVc70Bk
+* firebase
+https://www.youtube.com/watch?v=Fv8xNcXSqVI

@@ -20,7 +20,7 @@ export function DeleteGoal({id}: DeleteGoalProps) {
       },
       {
         text: "Remove",
-        onPress: () => useGoal.remove(id),
+        onPress: () => useGoal.remove(id)
       },
     ]);
   }

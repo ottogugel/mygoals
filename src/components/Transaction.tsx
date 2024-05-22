@@ -32,5 +32,5 @@ export function Transaction({ transaction, ...rest }: Props) {
         {transaction.date}
       </Text>
     </Pressable>
-  )
+  );
 }
