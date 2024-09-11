@@ -1,10 +1,6 @@
 * fazer a função de quando a meta for completa ser arquivada ou ir para o final da lista com uma cor diferente
 * ver a questão do texto no ios que quando o texto é digitado no input não consegue visualizar.
-* ver a questao da data no ios que fica invalid date mas no android funciona normal.
-
-
 * verificar zod reacthookform
-* deletar meta junto a transação
 * sql injector
 📌 String query = 'Select * from NomeDaTabela where Name="' +userName+'" and password="'+password+'"';
 

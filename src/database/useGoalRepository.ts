@@ -63,13 +63,19 @@ export function useGoalRepository() {
     return result.getFirstSync()
   }
 
-  // MÉTODO DE EXCLUIR A META
+  // MÉTODO DE EXCLUIR A META JUNTO A TRANSAÇÃO.
   function remove(id: string) {
     try {
     database.runSync(
       "DELETE FROM goals WHERE id = $id",
       { $id : Number(id) }
     );
+
+    database.runSync(
+      "DELETE FROM transactions WHERE goal_id = $goal_id",
+      { $goal_id: Number(id) }
+    );
+
     navigation.goBack();
     } catch (error) {
       throw error
