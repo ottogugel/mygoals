@@ -95,6 +95,10 @@ export default function Details() {
       if (type === "down") {
         amountAsNumber = amountAsNumber * -1
       }
+      // Validação se o campo não for preenchido.
+      if(!amount.trim()) {
+        return Alert.alert("Error", "Amount is required.")
+      }
 
       useTransaction.create({ goalId, amount: amountAsNumber });
 

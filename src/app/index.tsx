@@ -69,8 +69,8 @@ export default function Home() {
       if (isNaN(totalAsNumber)) {
         return Alert.alert("Error", "Invalid value.");
       }
-
-      if(name === "") {
+      // Validação - Se nenhum dos campos forem preenchidos
+      if(!name.trim() || !total.trim()) {
         return Alert.alert("Error", "Goal name and Total is required.")
 
       } else {
